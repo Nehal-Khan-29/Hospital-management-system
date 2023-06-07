@@ -18,7 +18,9 @@ struct hospital{
 		float totalfee;
 		float balance;
 		}p,q;
+
 char string[20];
+int cid;
 typedef struct hospital alka;
 void newrecord(int l);
 void print();
@@ -117,7 +119,7 @@ void main()
 				strcpy(p.category,"O.P.D.Patient");
 				p.balance=200;
 				strcpy(p.recommendation,"Admitted to O.P.D.");
-				strcat(p.recommendation," -> +");
+				strcat(p.recommendation," -> ");
 			    strcat(p.recommendation,p.disease);
 				strcpy(p.date,date2);
 				fwrite(&p,sizeof(p),1,fp);
@@ -159,7 +161,7 @@ void main()
 			       strcpy(&p.test[0][0],"Emergency Charge");
 			       strcpy(p.category,"Emergency Patient");
 			       strcpy(p.recommendation,"Admitted to Emergency");
-				   strcat(p.recommendation," -> +");
+				   strcat(p.recommendation," -> ");
 			       strcat(p.recommendation,p.disease);
 			       p.testfee[0]=250;
 			       p.balance=250;
@@ -298,8 +300,9 @@ void main()
 				cprintf("1.Records of patients in alphabatecal order");gotoxy(22,12);
 				cprintf("2.Records of O.P.D. patients");gotoxy(22,14);
 				cprintf("3.Records of Emergency patients");gotoxy(22,16);
-				cprintf("4.Recordsin paricular date");gotoxy(22,18);
-				cprintf("5.Return to main menu");gotoxy(25,20);
+				cprintf("4.Records in paricular date");gotoxy(22,18);
+				cprintf("5.Records in particular ID");gotoxy(22,20);
+				cprintf("6.Return to main menu");gotoxy(25,22);
 				fflush(stdin);
 				scanf("%c",&d);
 				switch(d)
@@ -377,7 +380,7 @@ void main()
 				fclose(fp);
 				break;
 				}
-			case '5':
+			case '6':
 				{
 				clrscr();
 				mainscreen();
@@ -551,6 +554,54 @@ void main()
 				break;
 				}
 
+		case '5':
+				{
+				clrscr();
+				mainscreen();
+				if((fp=fopen(fn1,"rb"))==NULL)
+					      {
+						printf("Cannot open the file");
+						getch();
+						exit(1);
+					      }
+				
+				gotoxy(27,15);
+				textcolor(3);
+				cprintf("Enter the ID");
+				gotoxy(35,20);fflush(stdin);
+				scanf("%d",&cid);
+
+
+				while(fread(&p,sizeof(alka),1,fp))
+				{
+					if(cid==p.sn)
+					{
+					clrscr();
+					mainscreen();
+					print();
+					gotoxy(17,6);  textcolor(7);
+					cprintf("::DISPLAYING-RECORDS-OF-");
+					cprintf("ID >%d",p.sn);
+					edit1();
+
+					textcolor(11);
+					gotoxy(20,22);
+					cprintf("Press");textcolor(15+128);
+					cprintf(" `Enter'"); textcolor(11);
+					cprintf(" to quit: ");
+					getch();
+					}
+				}
+				clrscr();
+				mainscreen();
+				textcolor(11);
+				gotoxy(30,25);
+				cprintf("::No Further Records::");   gotoxy(40,30);
+				getch();
+				fclose(fp);
+				break;
+				}
+
 			default:
 				{
 				clrscr();
@@ -603,7 +654,7 @@ void newrecord(int l)
 	gotoxy(5,19);
 	cprintf("Disease Descrp: ");
 
-	gotoxy(5,21);
+	gotoxy(7,21);
 	cprintf("Reff. Specialist no: ");
 
 	fflush(stdin);gotoxy(12,11);
