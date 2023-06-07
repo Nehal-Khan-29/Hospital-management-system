@@ -1188,14 +1188,9 @@ void about()
 	cprintf("Vengal, Thiruvalur");
 
 	gotoxy(20,8);textcolor(11);
-	cprintf("Created By--");
+	cprintf("Created By -");
 
 	gotoxy(20,10);textcolor(3);
-	cprintf("Nehal Khan           -      CH.EN,U4CSE22041");
-	gotoxy(20,12);textcolor(3);
-	cprintf("Keerthi Rohan        -      CH.EN,U4CSE22030 ");
-	gotoxy(20,14);textcolor(3);
-	cprintf("harshath             -      CH.EN,U4CSE22024");
-	gotoxy(20,16);textcolor(3);
-	cprintf("praveen Dharsaun     -      CH.EN,U4CSE22001");
+	cprintf("Nehal Khan");
+
 }
