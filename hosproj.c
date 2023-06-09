@@ -4,10 +4,12 @@
 #include<stdlib.h>
 #define rw 80
 #define cl 50
+
 FILE*fp,*fp1,*f1,*f2;
 int s,z;
 char fn1[]="opd12.txt";
 char fn2[]="oopd12.txt";
+
 struct hospital{
 		char name[20],address[20],ch;
 		int age,roomno,sn;
@@ -21,6 +23,7 @@ struct hospital{
 
 char string[20];
 int cid;
+
 typedef struct hospital alka;
 void newrecord(int l);
 void print();
@@ -32,6 +35,7 @@ void edit1();
 void editrecord();
 void switch1();
 void about();
+
 void main()
 {
 	int a,i,n,y;
@@ -60,14 +64,14 @@ void main()
 	label1:
 
 	textcolor(15);
-	lowvideo();gotoxy(25,10);textcolor(14);
-	cprintf("Enter the corresponding no");gotoxy(25,12);textcolor(10);
-	cprintf("1.Add new patient record");gotoxy(25,14);
-	cprintf("2.Search  or edit record");gotoxy(25,16);
-	cprintf("3.Know the records of patients");gotoxy(25,18);
-	cprintf("4.Delete the records");gotoxy(25,20);
-	cprintf("5.About us");gotoxy(25,22);
-	cprintf("6.Exit from the program");gotoxy(25,24);
+	lowvideo();gotoxy(25,8);textcolor(14);
+	cprintf("Enter the corresponding no");gotoxy(25,10);textcolor(10);
+	cprintf("1.Add new patient record");gotoxy(25,12);
+	cprintf("2.Edit patient record");gotoxy(25,14);
+	cprintf("3.Know the records of patients");gotoxy(25,16);
+	cprintf("4.Delete the records");gotoxy(25,18);
+	cprintf("5.About us");gotoxy(25,20);
+	cprintf("6.Exit from the program");gotoxy(25,22);
 	fflush(stdin);
 	scanf("%c",&d);
 	switch(d)
@@ -295,13 +299,13 @@ void main()
 			{       label6:
 				clrscr();
 				mainscreen();
-				gotoxy(22,8);textcolor(12);
-				cprintf("Enter the corresponding no");gotoxy(22,10);textcolor(3);
-				cprintf("1.Records of patients in alphabatecal order");gotoxy(22,12);
-				cprintf("2.Records of O.P.D. patients");gotoxy(22,14);
-				cprintf("3.Records of Emergency patients");gotoxy(22,16);
-				cprintf("4.Records in paricular date");gotoxy(22,18);
-				cprintf("5.Records in particular ID");gotoxy(22,20);
+				gotoxy(25,8);textcolor(12);
+				cprintf("Enter the corresponding no");gotoxy(25,10);textcolor(3);
+				cprintf("1.Records of patients in ID order");gotoxy(25,12);
+				cprintf("2.Records of O.P.D. patients");gotoxy(25,14);
+				cprintf("3.Records of Emergency patients");gotoxy(25,16);
+				cprintf("4.Records in paricular date");gotoxy(25,18);
+				cprintf("5.Records in particular ID");gotoxy(25,20);
 				cprintf("6.Return to main menu");gotoxy(25,22);
 				fflush(stdin);
 				scanf("%c",&d);
@@ -313,7 +317,7 @@ void main()
 					      {
 						printf("Cannot open the file");
 						getch();
-						exit(1);
+						break;
 					      }
 					 fseek(fp,0,SEEK_END);
 					 tsz=ftell(fp);
@@ -338,9 +342,9 @@ void main()
 					rewind(fp);
 					clrscr();
 					mainscreen();
-					gotoxy(3,10);
+					gotoxy(12,10);
 					textcolor(11);
-					cprintf("Ready to Display the patient records according to alphabatecal order of names");
+					cprintf("Ready to Display the patient records according to the ID");
 					gotoxy(27,12);textcolor(3);
 					cprintf("Press");textcolor(15+128);
 					cprintf(" `Enter' ");    textcolor(3);
@@ -388,14 +392,14 @@ void main()
 				 }
 			case '3':
 				{
-				clrscr();
-				mainscreen();
 				if((fp=fopen(fn1,"rb"))==NULL)
 					      {
 						printf("Cannot open the file");
 						getch();
-						exit(1);
+						break;
 					      }
+				clrscr();
+				mainscreen();
 				gotoxy(15,10);
 				textcolor(2);
 				cprintf("Ready to Display records of Emergency Patients");
@@ -441,14 +445,14 @@ void main()
 				}
 			case '2':
 				{
-				clrscr();
-				mainscreen();
 				if((fp=fopen(fn1,"rb"))==NULL)
 					      {
 						printf("Cannot open the file");
 						getch();
-						exit(1);
+						break;
 					      }
+				clrscr();
+				mainscreen();
 				gotoxy(15,10);
 				textcolor(2);
 				cprintf("Ready to Display records of O.P.D Patients");
@@ -493,16 +497,17 @@ void main()
 				}
 		case '4':
 				{
-				clrscr();
-				mainscreen();
+
 				if((fp=fopen(fn1,"rb"))==NULL)
 					      {
 						printf("Cannot open the file");
 						getch();
-						exit(1);
+						break;
 					      }
+				clrscr();
+				mainscreen();
 				label8:
-				gotoxy(27,15);
+				gotoxy(20,15);
 				textcolor(3);
 				cprintf("Enter the `Date' of a paricular day(yyyy/mm/dd)");
 				gotoxy(35,20);fflush(stdin);
@@ -556,16 +561,16 @@ void main()
 
 		case '5':
 				{
-				clrscr();
-				mainscreen();
+
 				if((fp=fopen(fn1,"rb"))==NULL)
 					      {
 						printf("Cannot open the file");
 						getch();
-						exit(1);
+						break;
 					      }
-				
-				gotoxy(27,15);
+				clrscr();
+				mainscreen();
+				gotoxy(23,15);
 				textcolor(3);
 				cprintf("Enter the ID");
 				gotoxy(35,20);fflush(stdin);
@@ -619,8 +624,8 @@ void main()
 		       {
 			clrscr();
 			mainscreen();
-			textcolor(12+128);gotoxy(22,8);
-			cprintf("Wrong choice");gotoxy(35,8);textcolor(15);
+			textcolor(12+128);gotoxy(22,6);
+			cprintf("Wrong choice");gotoxy(35,6);textcolor(15);
 			 cprintf("Retype choice");
 			goto label1;
 			}
@@ -636,7 +641,7 @@ void newrecord(int l)
 	char q;
 	p.sn=l;
 	displaydepartment();
-	gotoxy(6,9);textcolor(10);
+	gotoxy(5,9);textcolor(10);
 	cprintf("Record of patient no:");
 	printf(" %d",l);
 	gotoxy(5,11);
@@ -654,7 +659,7 @@ void newrecord(int l)
 	gotoxy(5,19);
 	cprintf("Disease Descrp: ");
 
-	gotoxy(7,21);
+	gotoxy(5,21);
 	cprintf("Reff. Specialist no: ");
 
 	fflush(stdin);gotoxy(12,11);
@@ -672,6 +677,7 @@ void newrecord(int l)
 	fflush(stdin);gotoxy(24,19);
 	scanf("%[^\n]",p.disease);
 }
+
 void newrecord1()
 {
 	  char q;
@@ -868,6 +874,7 @@ void displaydepartment()
 	cprintf("123,119");
 	textcolor(15);
 }
+
 void print()
 {
 
@@ -892,6 +899,7 @@ void print()
 	cprintf(" %s",p.category);
 
 }
+
 void edit1()
 {
 	int i,k;
@@ -923,19 +931,20 @@ void edit1()
 	cprintf("Rs.%0.2f",p.balance);
 	if(p.totalfee>p.balance)
 	{
-		textcolor(11); gotoxy(20,23);
+		textcolor(11); gotoxy(20,20);
 		cprintf("Total money to pay= ");
 		textcolor(15);
 		cprintf("%0.2f",p.totalfee-p.balance);
 	}
 	else
 	{
-		textcolor(11); gotoxy(20,23);
+		textcolor(11); gotoxy(20,20);
 		cprintf("Total money to return= ");
 		textcolor(15);
 		cprintf("%0.2f",p.balance-p.totalfee);
 	}
 }
+
 void switch1()
 {
 	int x,i;
@@ -1070,6 +1079,7 @@ void switch1()
 	mainscreen();
 	goto label2;
 }
+
 void editrecord()
 {
 	int y,x;
@@ -1084,7 +1094,7 @@ void editrecord()
 	mainscreen();
 	if((fp=fopen(fn1,"rb+"))==NULL)
 	{
-		printf("\n cannot open the record file 1");
+		printf("\n cannot open the record file ");
 		getch();
 		exit(1);
 	}
@@ -1095,7 +1105,7 @@ void editrecord()
 		{
 			print();
 			edit1();gotoxy(20,22);textcolor(9);
-			printf("Press `1'to edit and any key to go to main menu");
+			printf("Press '1'to edit and 'ANY key' to go to main menu");
 			fflush(stdin);
 			scanf("%d",&x);
 			if(x==1)
@@ -1124,6 +1134,7 @@ void editrecord()
 
 
 }
+
 void displaytest()
 {       int i;
 	gotoxy(50,8);textcolor(14);
@@ -1182,15 +1193,23 @@ void mainscreen()
 }
 
 void about()
-{   gotoxy(29,2);textcolor(3);
+{   gotoxy(36,1);textcolor(6);
+	cprintf("JEENA CARE");
+	gotoxy(29,3);textcolor(3);
 	cprintf("Amrita Vishwa Vidyapeetham");
-	gotoxy(32.5,4);textcolor(6);
+	gotoxy(32.5,5);textcolor(6);
 	cprintf("Vengal, Thiruvalur");
+	
 
 	gotoxy(20,8);textcolor(11);
-	cprintf("Created By -");
+	cprintf("Created By :--");
 
-	gotoxy(20,10);textcolor(3);
-	cprintf("Nehal Khan");
-
+	gotoxy(20,10);textcolor(11);
+	cprintf("Nehal Khan           -      CH.EN.U4CSE22041");
+	gotoxy(20,12);textcolor(11);
+	cprintf("Keerthi Rohan        -      CH.EN.U4CSE22030 ");
+	gotoxy(20,14);textcolor(11);
+	cprintf("Harshath             -      CH.EN.U4CSE22024");
+	gotoxy(20,16);textcolor(11);
+	cprintf("Pravin Dharsaun      -      CH.EN.U4CSE22001");
 }
