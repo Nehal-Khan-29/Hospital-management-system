@@ -11,10 +11,10 @@ char fn1[]="opd12.txt";
 char fn2[]="oopd12.txt";
 
 struct hospital{
-		char name[20],address[20],ch;
+		char name[100],address[100],ch;
 		int age,roomno,sn;
-		char disease[30],department[20],date[15];
-		char recommendation[50],category[30];
+		char disease[100],department[20],date[15];
+		char recommendation[100],category[100];
 		char test[15][20];
 		float testfee[15];
 		float totalfee;
@@ -93,7 +93,7 @@ void main()
 			mainscreen();
 			label:
 			gotoxy(22,14);textcolor(7);
-			cprintf("Enter `o' for O.P.D. & `e'for Emergency");
+			cprintf("Enter `o' for O.P.D or `e' for Emergency");
 			gotoxy(35,21);
 			fflush(stdin);
 			scanf("%c",&c);
@@ -127,6 +127,7 @@ void main()
 			    strcat(p.recommendation,p.disease);
 				strcpy(p.date,date2);
 				fwrite(&p,sizeof(p),1,fp);
+				fflush(fp);
 				fclose(fp);
 				if((fp=fopen(fn2,"ab+"))==NULL)
 				{
@@ -170,6 +171,7 @@ void main()
 			       p.testfee[0]=250;
 			       p.balance=250;
 			       fwrite(&p,sizeof(p),1,fp);
+				   fflush(fp);
 			       fclose(fp);
 			      if((fp=fopen(fn2,"ab+"))==NULL)
 				{
@@ -1034,7 +1036,7 @@ void switch1()
 				gotoxy(45,i);
 				fflush(stdin);
 				cprintf("%c ",16);
-				scanf("%s",&p.test[z][0]);
+				scanf("%[^\n]",&p.test[z][0]);
 				if(strcmp(&p.test[z][0],"esc")==0)
 				{       labelh:
 					gotoxy(48,i+3);textcolor(15);
@@ -1185,7 +1187,7 @@ void displaytest()
 
 void mainscreen()
 {   
-	gotoxy(34,2);textcolor(3);
+	gotoxy(36,2);textcolor(3);
 	cprintf("JEENA CARE");
 	gotoxy(32.5,4);textcolor(6);
 	cprintf("Vengal, Thiruvalur");
