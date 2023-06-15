@@ -894,9 +894,7 @@ void print()
 	cprintf("Room no:");gotoxy(18,14);textcolor(11);
 	cprintf(" %d",p.roomno);gotoxy(10,15);textcolor(2);
 	cprintf("Department:");gotoxy(21,15);textcolor(11);
-	cprintf(" %s",p.department);gotoxy(10,16);textcolor(2);
-	cprintf("Category:");gotoxy(19,16);textcolor(11);
-	cprintf(" %s",p.category);
+	cprintf(" %s",p.department);
 
 }
 
