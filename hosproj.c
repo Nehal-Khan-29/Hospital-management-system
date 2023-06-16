@@ -362,7 +362,7 @@ void main()
 					edit1();
 
 					textcolor(11);
-					gotoxy(20,22);
+					gotoxy(24,22);
 					cprintf("Press");textcolor(15+128);
 					cprintf(" `Enter'"); textcolor(11);
 					cprintf(" for next and `r' to quit: ");
@@ -474,7 +474,7 @@ void main()
 					cprintf("::DISPLAYING-RECORDS-OF-OPD-PATIENTS::");
 					edit1();
 						textcolor(11);
-					gotoxy(20,22);
+					gotoxy(24,22);
 					cprintf("Press");textcolor(15+128);
 					cprintf(" `Enter'"); textcolor(11);
 					cprintf(" for next and `r' to quit: ");
@@ -537,7 +537,7 @@ void main()
 					edit1();
 
 					textcolor(11);
-					gotoxy(20,22);
+					gotoxy(27,22);
 					cprintf("Press");textcolor(15+128);
 					cprintf(" `Enter'"); textcolor(11);
 					cprintf(" for next and `r' to quit: ");
@@ -592,7 +592,7 @@ void main()
 					edit1();
 
 					textcolor(11);
-					gotoxy(20,22);
+					gotoxy(27,22);
 					cprintf("Press");textcolor(15+128);
 					cprintf(" `Enter'"); textcolor(11);
 					cprintf(" to quit: ");
@@ -914,33 +914,33 @@ void edit1()
 	getch();
 	clrscr();
 	mainscreen();
-	textcolor(14);     gotoxy(10,8);
-	cprintf("The list of expenditure of patient no: ");
+	textcolor(14);     gotoxy(5,8);
+	cprintf("Expenditure of patient no: ");
 	printf("%d",p.sn);
-	for(z=0,i=0,k=11;p.testfee[z]!=0;i++,z++)
+	for(z=0,i=0,k=8;p.testfee[z]!=0;i++,z++)
 	{
-		textcolor(15);gotoxy(20,k);
+		textcolor(15);gotoxy(45,k);
 		cprintf("%d",i+1);      textcolor(11);
-		cprintf(" %s",&p.test[z][0]);textcolor(15);gotoxy(40,k);
+		cprintf(" %s",&p.test[z][0]);textcolor(15);gotoxy(65,k);
 		cprintf("Rs.%0.2f",p.testfee[z]);
-		k=k+2;
+		k=k+1;
 	}
-	gotoxy(20,k+2); textcolor(11);
+	gotoxy(5,10); textcolor(11);
 	cprintf("Total charge= ");textcolor(15);
 	cprintf("Rs.%0.2f",p.totalfee);
-	gotoxy(20,k+4);textcolor(11);
+	gotoxy(5,12);textcolor(11);
 	cprintf("Total Deposited: ");textcolor(15);
 	cprintf("Rs.%0.2f",p.balance);
 	if(p.totalfee>p.balance)
 	{
-		textcolor(11); gotoxy(20,20);
+		textcolor(11); gotoxy(5,14);
 		cprintf("Total money to pay= ");
 		textcolor(15);
 		cprintf("%0.2f",p.totalfee-p.balance);
 	}
 	else
 	{
-		textcolor(11); gotoxy(20,20);
+		textcolor(11); gotoxy(5,14);
 		cprintf("Total money to return= ");
 		textcolor(15);
 		cprintf("%0.2f",p.balance-p.totalfee);
@@ -1026,12 +1026,12 @@ void switch1()
 		       clrscr();
 		       mainscreen();
 		       displaytest();
-		       gotoxy(45,13);textcolor(3);
+		       gotoxy(45,10);textcolor(3);
 		       cprintf("Type `esc' tn content to stop");
-		       gotoxy(45,15);textcolor(15);
-		       cprintf("Contents");gotoxy(70,15);
+		       gotoxy(45,12);textcolor(15);
+		       cprintf("Contents");gotoxy(70,12);
 			cprintf("Rs.");lk=0;
-		       for(i=17;1;i++,z++)
+		       for(i=14;1;i++,z++)
 		       {
 				gotoxy(45,i);
 				fflush(stdin);
@@ -1086,7 +1086,7 @@ void editrecord()
 {
 	int y,x;
 	gotoxy(20,12);textcolor(11);
-	cprintf("Enter the patient `record no' or `Full name': ");gotoxy(25,14);
+	cprintf("Enter the patient `ID no' or `Full name': ");gotoxy(25,14);
 
 	fflush(stdin);
 	scanf("%[^\n]",string);
@@ -1107,7 +1107,7 @@ void editrecord()
 		{
 			print();
 			edit1();gotoxy(20,22);textcolor(9);
-			printf("Press '1'to edit and 'ANY key' to go to main menu");
+			printf("Press '1' to edit and 'ANY key' to go to main menu :");
 			fflush(stdin);
 			scanf("%d",&x);
 			if(x==1)
