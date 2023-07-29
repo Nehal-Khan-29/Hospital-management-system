@@ -1208,10 +1208,5 @@ void about()
 
 	gotoxy(20,10);textcolor(11);
 	cprintf("Nehal Khan           -      CH.EN.U4CSE22041");
-	gotoxy(20,12);textcolor(11);
-	cprintf("Keerthi Rohan        -      CH.EN.U4CSE22030 ");
-	gotoxy(20,14);textcolor(11);
-	cprintf("Harshath             -      CH.EN.U4CSE22024");
-	gotoxy(20,16);textcolor(11);
-	cprintf("Pravin Dharsaun      -      CH.EN.U4CSE22001");
+
 }
