@@ -1,4 +1,4 @@
-Video : https://youtu.be/Kip3-dkbAYE
+
 
 # Jeena Care Hospital Management System - User Guide
 
